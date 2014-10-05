@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recipe/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="29" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0">
+            <state line="55" column="72" selection-start="2914" selection-end="2914" vertical-scroll-proportion="0.7245409">
               <folding>
                 <element signature="e#25#53#0" expanded="true" />
               </folding>
@@ -81,10 +81,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_left_instructions.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_left_instructions.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/details/_left_instructions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="28" selection-start="611" selection-end="611" vertical-scroll-proportion="0.50373137">
+            <state line="23" column="18" selection-start="1070" selection-end="1070" vertical-scroll-proportion="-6.9">
               <folding />
             </state>
           </provider>
@@ -618,19 +618,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recipe/models.py">
+    <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/details/_left_instructions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="29" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#25#53#0" expanded="true" />
-          </folding>
+        <state line="23" column="18" selection-start="1070" selection-end="1070" vertical-scroll-proportion="-6.9">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/details/_left_instructions.html">
+    <entry file="file://$PROJECT_DIR$/recipe/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="28" selection-start="611" selection-end="611" vertical-scroll-proportion="0.50373137">
-          <folding />
+        <state line="55" column="72" selection-start="2914" selection-end="2914" vertical-scroll-proportion="0.7245409">
+          <folding>
+            <element signature="e#25#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
