@@ -1,16 +1,9 @@
 import shutil, os, re, hashlib
 
-#f = open('photo.txt', 'r')
-#c = 0
-#for line in f:
-#    c=c+1
-#    print(line)
-#    if c == 10:
-#        break
-
 root_src_dir = "/Users/Fred/Documents/01 MenuGourmet"
 root_dst_dir = "/Users/Fred/www/mg2/mg2/import_photos"
 count = 0
+
 for src_dir, dirs, files in os.walk(root_src_dir):
     #if count > 100:
     #    break

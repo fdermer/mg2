@@ -1,4 +1,5 @@
 from django.db import models
+import hashlib
 
 class Recipe(models.Model):
     id = models.IntegerField(default=None, null=False, blank=False, primary_key=True)
@@ -34,78 +35,5 @@ class Recipe(models.Model):
     def __unicode__(self):
         return self.name
 
-
-
-#class Recipes(models.Model):
-#    id = models.IntegerField(default=None, null=False, blank=False, primary_key=True)
-#    difficulty = models.IntegerField(default=None, null=True, blank=True)
-#    recipe_category_id = models.IntegerField(default=None, null=True, blank=True)
-#    chef_id = models.IntegerField(default=None, null=True, blank=True)
-#    region_id = models.IntegerField(default=None, null=True, blank=True)
-#    preparation_time = models.IntegerField(default=None, null=True, blank=True)
-#    cooking_time = models.IntegerField(default=None, null=True, blank=True)
-#    pause_time = models.IntegerField(default=None, null=True, blank=True)
-#    total_time = models.IntegerField(default=None, null=True, blank=True)
-#    chef_level = models.IntegerField(default=None, null=True, blank=True)
-#    price = models.IntegerField(default=None, null=True, blank=True)
-#    is_children = models.BooleanField(default=False)
-#    is_for_children = models.BooleanField(default=False)
-#    is_big_familly = models.BooleanField(default=False)
-#    is_linear = models.BooleanField(default=False)
-#    serving = models.IntegerField(default=None, null=True, blank=True)
-#    total_view = models.IntegerField(default='0', null=True, blank=True)
-#    temperature = models.CharField(max_length=255, null=True, blank=True)
-#    taste = models.CharField(max_length=255, null=True, blank=True)
-#    id_ext = models.CharField(max_length=16, null=True, blank=True)
-#    is_light = models.BooleanField(default=False)
-#    is_selection = models.BooleanField(default=False)
-#    is_prepared_before = models.BooleanField(default=False)
-#    created_by = models.IntegerField(default=None, null=True, blank=True)
-#    created_at = models.DateTimeField(null=True, blank=True)
-#    updated_by = models.IntegerField(default=None, null=True, blank=True)
-#    updated_at = models.DateTimeField(null=True, blank=True)
-#    author_id = models.IntegerField(default=None, null=True, blank=True)
-#    enabled = models.BooleanField(default=False)
-#    label = models.CharField(max_length=255, null=True, blank=True)
-#    status = models.IntegerField(default=None, null=True, blank=True)
-#    lang = models.CharField(max_length=255, null=True, blank=True)
-#    added_by_email = models.CharField(max_length=255, null=True, blank=True)
-#    added_by_website = models.CharField(max_length=255, null=True, blank=True)
-#    added_by_name = models.CharField(max_length=255, null=True, blank=True)
-#    added_by = models.IntegerField(default=None, null=True, blank=True)
-#    added_at = models.DateTimeField(null=True, blank=True)
-#    moderated_status = models.IntegerField(default=None, null=True, blank=True)
-#    moderated_at = models.DateTimeField(null=True, blank=True)
-#    moderated_by = models.IntegerField(default=None, null=True, blank=True)
-#    is_vegetarian = models.BooleanField(default=False)
-#    quality = models.BooleanField(default=False)
-#    is_vegan = models.BooleanField(default=False)
-#    style_id = models.IntegerField(default=None, null=True, blank=True)
-#    is_from_feed = models.BooleanField(default=False)
-#    bonjour = models.DateField(null=True, blank=True)
-#    note = models.FloatField(default=0)
-#    num_comments = models.IntegerField(default=None, null=True, blank=True)
-#    num_notes = models.IntegerField(default=None, null=True, blank=True)
-#
-#
-#
-#class RecipeTranslation(models.Model):
-#    recipe = models.ForeignKey(Recipes, related_name="translations")
-#    name = models.CharField(max_length=255, null=True, blank=True)
-#    description = models.TextField()
-#    wine = models.TextField()
-#    keywords = models.TextField()
-#    ugc_ingredients = models.TextField()
-#    lang = models.CharField(max_length=2)
-#    created_by = models.IntegerField(default=None, null=True, blank=True)
-#    created_at = models.DateTimeField(null=True, blank=True)
-#    updated_by = models.IntegerField(default=None, null=True, blank=True)
-#    updated_at = models.DateTimeField(null=True, blank=True)
-#    author_id = models.IntegerField(default=None, null=True, blank=True)
-#    enabled = models.BooleanField(default=False)
-#    label = models.CharField(max_length=255, null=True, blank=True)
-#    status = models.IntegerField(default=None, null=True, blank=True)
-#    slug = models.CharField(max_length=255, null=True, blank=True)
-#
-#    def __unicode__(self):
-#        return self.name
+    def get_image_url(self):
+        return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_name

@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from models import Recipe
-import hashlib
+
 
 # Create your views here.
 
@@ -26,7 +26,7 @@ class RecipeDetail(generic.DetailView):
         context = super(RecipeDetail, self).get_context_data(**kwargs)
 
         # Add more context
-        context['image_folder'] = hashlib.md5(self.object.image_name.encode('utf-8')).hexdigest()[:1]
+        # context['image_folder'] = hashlib.md5(self.object.image_name.encode('utf-8')).hexdigest()[:1]
 
         return context
 
