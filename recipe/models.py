@@ -55,3 +55,11 @@ class Recipe(models.Model):
         sep = "§".decode('utf-8')
         step_list = self.steps.split(sep)
         return step_list
+
+    def get_difficulty(self):
+        if self.difficulty == 1:
+            return "très facile"
+        elif self.difficulty == 2:
+            return "facile"
+        else:
+            return "moyenne"
