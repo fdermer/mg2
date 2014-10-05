@@ -9,17 +9,18 @@ from models import Recipe
 
 # Create your views here.
 
-class IndexView(generic.ListView):
-    template_name = 'recipe/index.html'
-    #context_object_name = 'latest_poll_list'
+class RecipeList(generic.ListView):
+    model = Recipe
+    template_name = 'recipe/recipe_list.html'
+    context_object_name = 'recipe_list'
 
     def get_queryset(self):
         """Return the last five published recipes."""
-        return Recipe.objects.order_by('-id')[:5]
+        return Recipe.objects.order_by('id')[:10]
 
 class RecipeDetail(generic.DetailView):
     model = Recipe
-    template_name = 'recipe/wp-template.html'
+    template_name = 'recipe/recipe_view.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation
