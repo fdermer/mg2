@@ -4,3 +4,4 @@ db.sqlite3
 *.png
 *.idea
 *.pyc
+.idea

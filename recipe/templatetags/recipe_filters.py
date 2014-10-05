@@ -1,29 +1,18 @@
 # -*- coding: utf-8 -*-
 
-import string
-import re
+
 from django import template
 
 register = template.Library()
 
 @register.inclusion_tag('recipe/details/_ingredients.html')
-def recipe_ingredients (ingredient_list):
-    # Replace the seperator in the ingredient list
-    sep = "§".decode('utf-8')
-    #ingredient_list = string.replace(ingredient_list, sep+"g","g")
-    #ingredient_list = string.replace(ingredient_list, sep+"l","l")
-    ingredient_list = string.replace(ingredient_list, sep,";")
-    ingredient_list = re.sub(";(;)*",";",ingredient_list) #Delete multiple ";"
-    ingredient_list = ingredient_list.split(";")
+def recipe_ingredients(ingredient_list):
     return {
         "ingredient_list": ingredient_list,
     }
 
 @register.inclusion_tag('recipe/details/_steps.html')
-def recipe_steps (step_list):
-    # Replace the seperator in the ingredient list
-    sep = "§".decode('utf-8')
-    step_list = step_list.split(sep)
+def recipe_steps(step_list):
     return {
         "step_list": step_list,
     }

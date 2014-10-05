@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
-import hashlib
+import hashlib, string, re
 
 class Recipe(models.Model):
     id = models.IntegerField(default=None, null=False, blank=False, primary_key=True)
@@ -37,3 +39,19 @@ class Recipe(models.Model):
 
     def get_image_url(self):
         return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_name
+
+    def get_ingredients(self):
+        # Replace the separator in the ingredient list
+        sep = "§".decode('utf-8')
+        #ingredient_list = string.replace(ingredient_list, sep+"g","g")
+        #ingredient_list = string.replace(ingredient_list, sep+"l","l")
+        ingredient_list = string.replace(self.ingredients, sep,";")
+        ingredient_list = re.sub(";(;)*",";",ingredient_list) #Delete multiple ";"
+        ingredient_list = ingredient_list.split(";")
+        return ingredient_list
+
+    def get_steps(self):
+        # Replace the separator in the ingredient list
+        sep = "§".decode('utf-8')
+        step_list = self.steps.split(sep)
+        return step_list

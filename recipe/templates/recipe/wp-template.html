@@ -110,11 +110,11 @@
     <span itemprop="description">
         <h3 class="blue">Ingredients</h3>
 
-        {% recipe_ingredients recipe.ingredients %}
+        {% recipe_ingredients recipe.get_ingredients %}
 
         <h3 class="blue">C'est parti!</h3>
 
-        {% recipe_steps recipe.steps %}
+        {% recipe_steps recipe.get_steps %}
 
     </span>
 
