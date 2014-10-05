@@ -19,21 +19,16 @@
         <!-- Share Icons -->
         <div class="share">
             <a class="twitter"
-               onclick="window.open('http://twitter.com/home?status={{ recipe.name }} - http://
-                       {{ request.get_host }}{{ request.path }}','twitter','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
-               href="http://twitter.com/home?status={{ recipe.name }}%20-%20http://
-                       {{ request.get_host }}{{ request.path }}"
+               onclick="window.open('http://twitter.com/home?status={{ recipe.name }} - http://{{ request.get_host }}{{ request.path }}','twitter','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
+               href="http://twitter.com/home?status={{ recipe.name }}%20-%20http://{{ request.get_host }}{{ request.path }}"
                title="{{ recipe.name }}" target="Menugourmet"></a>
             <a class="facebook"
-               onclick="window.open('http://www.facebook.com/share.php?u=http://
-                       {{ request.get_host }}{{ request.path }}','facebook','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
+               onclick="window.open('http://www.facebook.com/share.php?u=http://{{ request.get_host }}{{ request.path }}','facebook','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
                href="http://www.facebook.com/share.php?u=http://{{ request.get_host }}{{ request.path }}"
                title="{{ recipe.name }}" target="Menugourmet"></a>
             <a class="google"
-               href="https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }}%20-%20http://
-                       {{ request.get_host }}{{ request.path }}"
-               onclick="window.open('https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }} - http://
-                       {{ request.get_host }}{{ request.path }}','gplusshare','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"></a>
+               href="https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }}%20-%20http://{{ request.get_host }}{{ request.path }}"
+               onclick="window.open('https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }} - http://{{ request.get_host }}{{ request.path }}','gplusshare','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"></a>
             <a class="print" href="javascript:window.print()" title="Print"></a>
         </div>
         {% comment %}<meta itemprop="interactionCount" content="UserComments:0"/> {% endcomment %}

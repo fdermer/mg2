@@ -41,14 +41,21 @@ class Recipe(models.Model):
         return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_name
 
     def get_ingredients(self):
-        # Replace the separator in the ingredient list
-        sep = "§".decode('utf-8')
-        #ingredient_list = string.replace(ingredient_list, sep+"g","g")
-        #ingredient_list = string.replace(ingredient_list, sep+"l","l")
-        ingredient_list = string.replace(self.ingredients, sep,";")
-        ingredient_list = re.sub(";(;)*",";",ingredient_list) #Delete multiple ";"
-        ingredient_list = ingredient_list.split(";")
-        return ingredient_list
+        #import pdb;pdb.set_trace()
+        if len(self.ingredients) > 15:
+            # Replace the separator in the ingredient list
+            sep = "§".decode('utf-8')
+            #ingredient_list = string.replace(ingredient_list, sep+"g","g")
+            #ingredient_list = string.replace(ingredient_list, sep+"l","l")
+            ingredient_list = string.replace(self.ingredients, sep,";")
+            ingredient_list = re.sub(";(;)*",";",ingredient_list) #Delete multiple ";"
+            ingredient_list = ingredient_list.split(";")
+            return ingredient_list
+        else:
+            sep = "•".decode('utf-8')
+            ingredient_list = re.sub(sep+"( )*","",self.ugc_ingredients)
+            return ingredient_list.split('\\r\\n')
+
 
     def get_steps(self):
         # Replace the separator in the ingredient list
