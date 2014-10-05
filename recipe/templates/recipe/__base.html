@@ -4,33 +4,40 @@
 <!doctype html>
 <html lang="fr-FR">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta_tags %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock %}
 
-    {% block title %} {% endblock %}
-    <!-- Font Files -->
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    {% block title %}
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"/>
-    <link rel='stylesheet' id='responsive-css' href="{% static 'css/responsive.css' %}" type='text/css' media='all'/>
+    {% endblock %}
 
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
-    <link rel="alternate" type="application/rss+xml" title="Food Recipes Theme &raquo; Feed"
-          href="http://alt-foodrecipes.inspirythemes.com/feed/"/>
+    {% block stylesheets %}
+        <!-- Font Files -->
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
-    <script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>
-    <script type='text/javascript' src="{% static 'js/jquery-migrate.min.js' %}"></script>
-    <script type='text/javascript' src="{% static 'js/jquery-ui-1.9.2.custom.js' %}"></script>
-    <script type='text/javascript' src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-    <script type='text/javascript' src="{% static 'js/script.js' %}"></script>
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"/>
+        <link rel='stylesheet' id='responsive-css' href="{% static 'css/responsive.css' %}" type='text/css' media='all'/>
 
-    <!-- Trucs SEO à gérer plus tard....
-    <link rel='prev' title='Chocolate Earl Grey Pots de Creme Recipe' href='http://alt-foodrecipes.inspirythemes.com/recipe/chocolate-earl-grey-pots-de-creme-recipe/' />
-    <link rel='next' title='Warm Flank Steak Salad With Mint And Cilantro' href='http://alt-foodrecipes.inspirythemes.com/recipe/warm-flank-steak-salad-with-mint-and-cilantro/' />
-    <link rel='canonical' href='http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/' />
-    <link rel='shortlink' href='http://alt-foodrecipes.inspirythemes.com/?p=317' />
-    -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+    {% endblock %}
+
+    {% block javascript %}
+        <script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>
+        <script type='text/javascript' src="{% static 'js/jquery-migrate.min.js' %}"></script>
+        <script type='text/javascript' src="{% static 'js/jquery-ui-1.9.2.custom.js' %}"></script>
+        <script type='text/javascript' src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+        <script type='text/javascript' src="{% static 'js/script.js' %}"></script>
+    {% endblock %}
+
+    {%  comment %} Trucs SEO pour plus tard
+        <link rel='prev' title='Chocolate Earl Grey Pots de Creme Recipe' href='http://alt-foodrecipes.inspirythemes.com/recipe/chocolate-earl-grey-pots-de-creme-recipe/' />
+        <link rel='next' title='Warm Flank Steak Salad With Mint And Cilantro' href='http://alt-foodrecipes.inspirythemes.com/recipe/warm-flank-steak-salad-with-mint-and-cilantro/' />
+        <link rel='canonical' href='http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/' />
+        <link rel='shortlink' href='http://alt-foodrecipes.inspirythemes.com/?p=317' />
+    {%  endcomment %}
 
 </head>
 <!--[if lt IE 7 ]>

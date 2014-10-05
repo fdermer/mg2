@@ -1,0 +1,30 @@
+<!-- Recipe Information -->
+<ul class="recipe-info clearfix">
+    <li class="servings">
+        <strong class="name">Pour :</strong>
+        <span class="value"><meta itemprop="recipeYield">{{ recipe.serving }} personne(s)</span>
+    </li>
+    <li class="prep-time">
+        <strong class="name">Préparation :</strong>
+            <span class="value">
+                <meta itemprop="prepTime" content="PT{{ recipe.prep_time }}M">{{ recipe.prep_time }}m
+            </span>
+    </li>
+    <li class="cook-time">
+        <strong class="name">Cuisson :</strong>
+            <span class="value">
+                <meta itemprop="cookTime" content="PT{{ recipe.cooking_time }}M">{{ recipe.cooking_time }}m
+            </span>
+    </li>
+    <li class="yield">
+        <strong class="name">Temps de pause :</strong>
+        <span class="value">{{ recipe.pause_time }}m</span>
+    </li>
+    <li class="ready-in">
+        <strong class="name">Total :</strong>
+            <span class="value">
+                <meta itemprop="totalTime" content="PT{{ recipe.total_time }}M">{{ recipe.total_time }}m
+            </span>
+    </li>
+</ul>
+<span class="w-pet-border"></span>
