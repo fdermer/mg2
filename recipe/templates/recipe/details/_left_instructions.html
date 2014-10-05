@@ -1,16 +1,16 @@
 <div class="info-left instructions">
 
     <!-- Ingredients & Steps -->
-        <span itemprop="description">
-            <h3 class="blue">Ingredients</h3>
+    <span itemprop="description">
+        <h3 class="blue">Ingredients</h3>
 
-            {% include "recipe/details/_ingredients.html" with ingredient_list=recipe.get_ingredients %}
+        {% include "recipe/details/_ingredients.html" with ingredient_list=recipe.get_ingredients %}
 
-            <h3 class="blue">C'est parti!</h3>
+        <h3 class="blue">C'est parti!</h3>
 
-            {% include "recipe/details/_steps.html" with step_list=recipe.get_steps %}
+        {% include "recipe/details/_steps.html" with step_list=recipe.get_steps %}
 
-        </span>
+    </span>
 
     <div class="recipe-tags clearfix">
         <span class="type">Plat: <a href="" rel="tag">{{ recipe.courses }}</a></span>
@@ -36,7 +36,6 @@
                        {{ request.get_host }}{{ request.path }}','gplusshare','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"></a>
             <a class="print" href="javascript:window.print()" title="Print"></a>
         </div>
-
         {% comment %}<meta itemprop="interactionCount" content="UserComments:0"/> {% endcomment %}
     </div>
 </div>

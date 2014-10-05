@@ -45,6 +45,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /*	1.	Font Face Declarations
 /*-----------------------------------------------------------------------------------*/
 
+/*
 @font-face {
     font-family: 'MuseoSlab500';
     src: url('fonts/museo_slab_500-webfont.eot');
@@ -56,6 +57,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font-style: normal;
 
 }
+*/
 
 
 
@@ -359,11 +361,11 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #left-area h2.title { margin: 0 0 10px; }
 #left-area span.published{ display:none;}
 #left-area .recipe-cat-info{ margin:0 0 10px 0; }
-#left-area .recipe-cat-info li{ float:left; width:195px; font-family:"MuseoSlab500", Times, serif; }
-#left-area .single-img-box { position: relative; overflow: hidden; width: 582px; height: 275px; padding: 7px 0 0 7px; margin: 0 0 20px 0; box-shadow: 1px, 1px, 0.5; }
-#left-area .single-img-box .recipe-single-img { width: 100%; height: 275px; }
+#left-area .recipe-cat-info li{ float:left; width:195px; font-family:Droid Serif, Times, serif; }
+#left-area .single-img-box { position: relative; float: left;overflow: hidden; width: 300px; height: 300px; padding: 0; margin: 0 0 20px 5px; box-shadow: 1px, 1px, 0.5; }
+#left-area .single-img-box .recipe-single-img { width: 100%; height: 300px; }
 #left-area .single-img-box .recipe-single-img.withbg { background: url(../images/loading.gif) center center no-repeat; }
-#left-area .single-img-box img { width: 575px; height: auto; }
+#left-area .single-img-box img { width: 300px; height: auto; }
 #left-area .single-img-box .img-nav { padding: 5px 10px 5px; float: left; position: absolute; bottom: 8px; right: 1px; background-color: #fff; z-index: 9999; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px; }
 #left-area .single-img-box .img-nav span { display: inline-block; width: 10px; height: 11px; margin: 0 5px; font-size: 0; background: url(../images/bulit.png) top no-repeat; cursor: pointer; }
 #left-area .single-img-box .img-nav span.cycle-pager-active { background-position: 0 -12px; }
@@ -372,8 +374,8 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 
 #left-area .single-slider { min-height: 262px; }
 
-#left-area .recipe-info{ margin: 10px 0 25px; }
-#left-area .recipe-info li{ float:left; width: auto; margin: 0 10px; font-family:"MuseoSlab500", Times, serif; }
+#left-area .recipe-info{ margin: 0;position: relative;float: left; width: 285px }
+#left-area .recipe-info li{ width: auto; margin: 5% 20px; font-family:Droid Serif, Times, serif; }
 #left-area .recipe-info li strong{ font-weight:normal; color: #0053a6; }
 #left-area .recipe-info li span{ }
 #left-area .w-pet-border { margin: 15px 0; }
@@ -385,7 +387,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #left-area h4.red { height: 30px; font-size: 18px; line-height: 30px; padding: 0 0 2px; margin: 0 0 20px; color: #66a80f; background: url(../images/pet-border.png) 0 30px repeat-x; }
 #left-area .info-left p { margin: 0 0 20px; }
 #left-area .info-left .recipe-tags{padding: 20px 0 0; background: url(../images/pet-border.png) 0 -2px repeat-x;}
-#left-area .info-left .recipe-tags span{ display:block; margin-bottom:10px; color: #0053a6; font-family:"MuseoSlab500", Times, serif; }
+#left-area .info-left .recipe-tags span{ display:block; margin-bottom:10px; color: #0053a6; font-family:Droid Serif, Times, serif; }
 /* share box in recipe tags area */
 #left-area.full-wide .info-left .recipe-tags .share { margin: 2px 0 0 0; }
 #left-area .info-left .recipe-tags .share { margin: 10px 0 0 0; text-align: left; float:none; }
@@ -432,7 +434,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #left-area .columns br { clear: both; }
 #left-area p { margin: 0 0 30px; }
 #left-area blockquote { padding: 0 0 0 40px; background: url(../images/quote-open.png) 8px 6px no-repeat; }
-#left-area blockquote p { font: 18px/27px "MuseoSlab500", Arial, Helvetica, sans-serif; font-style: italic; margin-bottom: 0; padding: 10px; background: #fff; }
+#left-area blockquote p { font: 18px/27px Droid Serif, Arial, Helvetica, sans-serif; font-style: italic; margin-bottom: 0; padding: 10px; background: #fff; }
 #left-area blockquote span.end-quote { display: inline-block; width: 23px; height: 16px; margin: 0 0 0 3px; background: url(../images/quote-close.png) no-repeat; }
 #left-area blockquote.leftalign { float: left; margin: 0 20px 0 0; }
 #left-area blockquote.rightalign { float: right; margin: 0 0 0 20px; }
@@ -791,7 +793,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #left-area .page .faq-list { margin: 0 0 0 65px; }
 #left-area .page .faq-list li { padding: 15px 0 1px 0; margin: 0 0 0; background: url(../images/pet-border.png) bottom repeat-x; position: relative; list-style: none; }
 #left-area .page .faq-list li h3 { cursor: pointer; margin: 0; padding: 0 0 10px; }
-#left-area .page .faq-list li .number { display: block; width: 45px; height: 45px; background: url(../images/faq-num-bg.png) left top no-repeat; font: 24px/45px "MuseoSlab500", Arial, Helvetica, sans-serif; text-align: center; color: #999999; position: absolute; top: 15px; left: -65px; }
+#left-area .page .faq-list li .number { display: block; width: 45px; height: 45px; background: url(../images/faq-num-bg.png) left top no-repeat; font: 24px/45px Droid Serif, Arial, Helvetica, sans-serif; text-align: center; color: #999999; position: absolute; top: 15px; left: -65px; }
 #left-area .page .faq-list li.active .number { background-position: left bottom; color: #fff; }
 
 #left-area .page .faq-list li:last-child { background: none; }
@@ -814,7 +816,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 
 #content #sidebar .widget .phone,
 #content #sidebar .widget .email,
-#content #sidebar .widget .note { display: block; height: 25px; padding: 0 0 0 35px; margin: 0 0 7px; font: 16px/25px "MuseoSlab500", Arial, Helvetica, sans-serif; font-style: italic; background: url(../images/sidebar-icons.png) left top no-repeat; }
+#content #sidebar .widget .note { display: block; height: 25px; padding: 0 0 0 35px; margin: 0 0 7px; font: 16px/25px Droid Serif, Arial, Helvetica, sans-serif; font-style: italic; background: url(../images/sidebar-icons.png) left top no-repeat; }
 #content #sidebar .widget .email { background-position: left center; }
 #content #sidebar .widget .note { background-position: left bottom; }
 #content #sidebar .widget h4.blue { font-size: 16px; color: #0053a6; margin: 0 0 10px; }
@@ -1046,7 +1048,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #recipe-form #recipe-image{ }
 #recipe-form input[type="text"]{ padding:5px; }
 #recipe-form fieldset { margin:0 0 20px 0; position:relative; max-width: 100%; }
-#recipe-form label{ display:block; color: #6F716B; font-size:16px; font-family: "MuseoSlab500",Times,serif; margin:0 0 10px 0; }
+#recipe-form label{ display:block; color: #6F716B; font-size:16px; font-family: Droid Serif,Times,serif; margin:0 0 10px 0; }
 #recipe-form label.error{ color:red; font-size:12px; position:absolute; top:0; right:0; }
 #recipe-form #title{ width:400px; }
 #recipe-form fieldset .more-ingre { font-size: 35px; position: absolute; right: 0; bottom: 20px; cursor: pointer; }
@@ -1080,7 +1082,7 @@ hr { border: none; height: 2px; background: url(../images/pet-border.png); }
 #left-area .recipe-message h3{ color:#1D7DA3; }
 #left-area .recipe-message h4{ color:#1D7DA3; }
 
-#login-signup-forgot label{ width:100px; color: #6F716B; font-size:14px; font-family: "MuseoSlab500",Times,serif; margin:0 0 10px 0; }
+#login-signup-forgot label{ width:100px; color: #6F716B; font-size:14px; font-family: Droid Serif,Times,serif; margin:0 0 10px 0; }
 #login-signup-forgot label.checkbox-label{ width:auto; margin-bottom:20px; }
 #login-signup-forgot label.forgot-email{ width:auto; margin-right:10px;  }
 #login-signup-forgot input[type="submit"]{  height: 27px; padding: 0 13px 3px; background: url(../images/button-bg-pink.png) repeat-x; cursor: pointer; }
