@@ -2,11 +2,11 @@
 
     <!-- Ingredients & Steps -->
     <span itemprop="description">
-        <h3 class="blue">Ingredients</h3>
+        <h3>Ingredients</h3>
 
         {% include "recipe/details/_ingredients.html" with ingredient_list=recipe.get_ingredients %}
 
-        <h3 class="blue">C'est parti!</h3>
+        <h3>C'est parti!</h3>
 
         {% include "recipe/details/_steps.html" with step_list=recipe.get_steps %}
 
