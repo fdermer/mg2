@@ -53,70 +53,51 @@
 
 <body>
 
-<!-- ============= HEADER STARTS HERE ============== -->
-<div id="header-wrapper" class="clearfix">
+    <!-- ============= HEADER ============== -->
+    <div id="header-wrapper" class="clearfix">
+        <div id="header" class="clearfix">
+            <a class="responsive_logo" href="http://www.menugourmet.com">
+                <img src="{% static 'images/menugourmet-recettes-faciles.png' %}" alt="Menugourmet - Recettes faciles"
+                    class="logo"/>
+            </a>
+        </div>
+    </div>
 
-    <div id="header" class="clearfix">
-        <!-- WEBSITE LOGO -->
-        <a class="responsive_logo" href="http://www.menugourmet.com"><img
-                src="{% static 'images/menugourmet-recettes-faciles.png' %}" alt="Menugourmet - Recettes faciles"
-                class="logo"/></a>
+    <!-- ============= CONTENTS ============== -->
+    {% block content %}{% endblock %}
+
+    <!-- ============= FOOTER============== -->
+    <div id="footer-wrap">
+        <div id="footer">
+            {% include "recipe/details/_footer.html" %}
+
+        </div>
 
     </div>
-    <!-- end of header div -->
 
-    {% comment %} Bordure à gérer, je n'ai pas l'immage
-    <span class="w-pet-border"></span>
-    {% endcomment %}
+    <script>
+        //this function attached focus and blur events with input elements
+        var addFocusAndBlur = function ($input, $val) {
 
+            $input.focus(function () {
+                if (this.value == $val) {
+                    this.value = '';
+                }
+            });
 
-</div><!-- end of header-wrapper div -->
-
-<!-- ============= HEADER ENDS HERE ============== -->
-
-
-{% block content %}{% endblock %}
-
-<!-- ============= FOOTER STARTS HERE ============== -->
-
-<div id="footer-wrap">
-    <div id="footer">
-        {% include "recipe/details/_footer.html" %}
-
-    </div>
-    <!-- end of footer div -->
-</div>
-<!-- end of footer-wrapper div -->
-
-
-<!-- ============= FOOTER ENDS HERE ============== -->
-
-
-
-    //=============================
-
-    //this function attached focus and blur events with input elements
-    var addFocusAndBlur = function ($input, $val) {
-
-        $input.focus(function () {
-            if (this.value == $val) {
-                this.value = '';
-            }
-        });
-
-        $input.blur(function () {
-            if (this.value == '') {
-                this.value = $val;
-            }
-        });
-    }
-    // example code to attach the events
-    addFocusAndBlur(jQuery('#s'), 'Search for');
-    addFocusAndBlur(jQuery('#cname'), 'Name here');
-    addFocusAndBlur(jQuery('#cemail'), 'Email here');
-    addFocusAndBlur(jQuery('#cmessage'), 'Message');
-    addFocusAndBlur(jQuery('#message'), 'Type your comments here');
-</script>
+            $input.blur(function () {
+                if (this.value == '') {
+                    this.value = $val;
+                }
+            });
+        }
+        // example code to attach the events
+        addFocusAndBlur(jQuery('#s'), 'Search for');
+        addFocusAndBlur(jQuery('#cname'), 'Name here');
+        addFocusAndBlur(jQuery('#cemail'), 'Email here');
+        addFocusAndBlur(jQuery('#cmessage'), 'Message');
+        addFocusAndBlur(jQuery('#message'), 'Type your comments here');
+    </script>
 
 </body>
 </html>
