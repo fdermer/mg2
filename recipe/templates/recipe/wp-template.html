@@ -1,0 +1,641 @@
+{% extends 'recipe/base.html' %}
+{% load staticfiles %}
+{% load recipe_filters %}
+
+{% block title %}
+    <title>{{ recipe.name }} | Meilleure recette </title>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    <!-- ============= CONTAINER STARTS HERE ============== -->
+    <div class="main-wrap">
+    <div id="container">
+    <!-- WEBSITE SEARCH STARTS HERE -->
+    <div class="top-search clearfix">
+        <h3 class="head-pet"><span>Recipe Search</span></h3>
+
+        <form action="http://alt-foodrecipes.inspirythemes.com" id="searchform">
+            <p>
+                <input type="text" name="s" id="s" class="field" value="Search for"/>
+                <input type="submit" name="s_submit" id="s-submit" value=""/>
+            </p>
+        </form>
+        <p class="statement"><span class="fireRed">Recipe Types:</span>
+            <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/beef/">Beef</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/breakfast/">Breakfast</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/cheese-2/">Cheese</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/chicken-2/">Chicken</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/chocolate/">Chocolate</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/fish/">Fish</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/pizzas/">Pizzas</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/potatos/">Potatos</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/rools/">Rolls</a>
+            , <a href="http://alt-foodrecipes.inspirythemes.com/recipe-type/sandwiches/">Sandwiches</a>
+        </p>
+    </div>
+    <!-- end of top-search div-->
+
+
+    <!-- ============= CONTENT AREA STARTS HERE ============== -->
+    <div id="content" class="clearfix ">
+    <div id="left-area" class="clearfix hrecipe" itemscope itemtype="http://schema.org/Recipe">
+
+    <!-- Starting Default Loop -->
+
+    <h1 class="title fn" itemprop="name">{{ recipe.name }}</h1>
+    <!-- for Schema.org microdata -->
+
+
+    <meta itemprop="url" content="http://{{ request.get_host }}{{ request.path }}">
+    <meta itemprop="datePublished" content="2014-08-17"/>
+    <span class="published">2014-08-17</span>
+
+    <!-- Recipe Categorization Information -->
+    <ul class="recipe-cat-info clearfix">
+        <li>
+            Catégorie: <a href="" rel="tag">{{ recipe.category }}</a></li>
+        <li>
+        </li>
+        <li>
+            Difficulté: <a href="" rel="tag">{{ recipe.difficulty }}</a></li>
+    </ul>
+
+    <!-- Recipe Single Image -->
+    <div class="single-img-box ">
+        <div class="single-slider cycle-slideshow " data-cycle-pager=".cycle-pager">
+            <img width="575" height="262"
+                 src="{{ STATIC_URL }}recettes/{{ image_folder }}/{{ recipe.image_name }}"
+                 class="photo wp-post-image" alt="banh-mi" itemprop="image"/></div>
+        <div class="img-nav cycle-pager"></div>
+    </div>
+
+
+    <!-- Recipe Information -->
+    <ul class="recipe-info clearfix">
+        <li class="servings">
+            <strong class="name">Pour :</strong>
+            <span class="value"><meta itemprop="recipeYield">{{ recipe.serving }} personne(s)</span>
+        </li>
+        <li class="prep-time">
+            <strong class="name">Préparation :</strong>
+        <span class="value">
+            <meta itemprop="prepTime" content="PT{{ recipe.prep_time }}M">{{ recipe.prep_time }}m
+        </span>
+        </li>
+        <li class="cook-time">
+            <strong class="name">Cuisson :</strong>
+        <span class="value">
+            <meta itemprop="cookTime" content="PT{{ recipe.cooking_time }}M">{{ recipe.cooking_time }}m
+        </span>
+        </li>
+        <li class="yield">
+            <strong class="name">Temps de pause :</strong>
+            <span class="value">{{ recipe.pause_time }}m</span>
+        </li>
+        <li class="ready-in">
+            <strong class="name">Total :</strong>
+        <span class="value">
+            <meta itemprop="totalTime" content="PT{{ recipe.total_time }}M">{{ recipe.total_time }}m
+        </span>
+        </li>
+    </ul>
+    <span class="w-pet-border"></span>
+
+    <div class="info-left instructions">
+
+    <span itemprop="description">
+        <h3 class="blue">Ingredients</h3>
+
+        {% recipe_ingredients recipe.ingredients %}
+
+        <h3 class="blue">C'est parti!</h3>
+
+        {% recipe_steps recipe.steps %}
+
+    </span>
+
+        <div class="recipe-tags clearfix">
+            <span class="type">Plat: <a href="" rel="tag">{{ recipe.courses }}</a></span>
+        <span class="tags">Categorie: <a href="" rel="tag">{{ recipe.category }}</a>
+
+        <!-- Share Icons -->
+        <div class="share">
+            <a class="twitter"
+               onclick="window.open('http://twitter.com/home?status={{ recipe.name }} - http://
+                       {{ request.get_host }}{{ request.path }}','twitter','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
+               href="http://twitter.com/home?status={{ recipe.name }}%20-%20http://
+                       {{ request.get_host }}{{ request.path }}"
+               title="{{ recipe.name }}" target="Menugourmet"></a>
+            <a class="facebook"
+               onclick="window.open('http://www.facebook.com/share.php?u=http://
+                       {{ request.get_host }}{{ request.path }}','facebook','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"
+               href="http://www.facebook.com/share.php?u=http://{{ request.get_host }}{{ request.path }}"
+               title="{{ recipe.name }}" target="Menugourmet"></a>
+            <a class="google"
+               href="https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }}%20-%20http://
+                       {{ request.get_host }}{{ request.path }}"
+               onclick="window.open('https://m.google.com/app/plus/x/?v=compose&amp;content={{ recipe.name }} - http://
+                       {{ request.get_host }}{{ request.path }}','gplusshare','width=450,height=300,left='+(screen.availWidth/2-375)+',top='+(screen.availHeight/2-150)+'');return false;"></a>
+            <a class="print" href="javascript:window.print()" title="Print"></a>
+        </div>
+
+        {% comment %}<meta itemprop="interactionCount" content="UserComments:0"/> {% endcomment %}
+        </div>
+    </div>
+    <!-- end of info-left div -->
+
+    <div class="info-right">
+        <!-- Cook Info -->
+        <div class="cookname" itemscope itemtype="http://schema.org/Person">
+            <div class="img-box">
+                <a itemprop="author" href="http://alt-foodrecipes.inspirythemes.com/author/hassan-raza/">
+                    <img alt=''
+                         src='http://1.gravatar.com/avatar/3786853ef52f92c5f553e063711acfd6?s=78&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D78&amp;r=G'
+                         class='avatar avatar-78 photo' height='78' width='78'/> </a>
+
+                <div class="share">
+                </div>
+            </div>
+            <div class="cook-info author vcard">
+                <h5 itemprop="name" class="fn given-name url"><a
+                        href="http://alt-foodrecipes.inspirythemes.com/author/hassan-raza/" title="Posts by John Doe"
+                        rel="author">John Doe</a></h5>
+
+                <p itemprop="description"></p>
+                <a itemprop="url" class="url" href="http://alt-foodrecipes.inspirythemes.com/author/hassan-raza/">View
+                    Other
+                    Recipes By This Chef &raquo;</a>
+            </div>
+
+        </div>
+        <!-- end of cookname div -->
+        <!-- Rating Icons -->
+        <div class="rate-box">
+
+            <h6>Average Member Rating</h6>
+
+            <p class="ex-rates" itemprop="reviews" itemscope itemtype="http://schema.org/AggregateRating">
+                <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span
+                    class="off"></span> (4.4 / 5)
+            </p>
+
+            <div class="hreview-aggregate">
+			<span class="rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+				<span class="average">4.4</span>
+				<span class="best" itemprop="ratingValue">5</span>
+				<span class="count" itemprop="reviewCount">128</span>
+			</span>
+            </div>
+
+            <form action="http://alt-foodrecipes.inspirythemes.com/wp-admin/admin-ajax.php" method="post"
+                  id="rate-product">
+                <h6>Rate this recipe</h6>
+
+                <p class="rates">
+                    <span class="off"></span>
+                    <span class="off"></span>
+                    <span class="off"></span>
+                    <span class="off"></span>
+                    <span class="off"></span>
+                    <input type="hidden" name="selected_rating" id="selected_rating" value=""/>
+                    <input type="hidden" name="post_id" value="317"/>
+                    <input type="hidden" name="action" value="rate_this"/>
+                </p>
+            </form>
+            <p id="output"></p>
+
+            <p class="status"><span>128 people</span> rated this recipe</p>
+
+            <p class="views"></p>
+
+        </div>
+        <!-- end of rate-box div -->
+        <!-- Including More Recipes part -->
+        <div class="more-recipe">
+            <h5>Related Recipes:</h5>
+
+            <div class="recipe-imgs">
+                <div class="more-recipes">
+                    <ul class="cycle-slideshow" data-cycle-fx=scrollHorz data-cycle-timeout=0 data-cycle-slides="li"
+                        data-cycle-prev=".p-317"
+                        data-cycle-next=".n-317">
+                        <li>
+                            <a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/">
+                                <img width="222" height="144"
+                                     src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Ham-and-Cheese-Breakfast-Sandwich-222x144.jpg"
+                                     class="attachment-recipe-4column-thumb wp-post-image"
+                                     alt="Ham-and-Cheese-Breakfast-Sandwich"/> </a>
+
+                            <p class="info-box">Ham &#038; Cheese Breakfast Sandwich</p>
+                        </li>
+                        <li>
+                            <a href="http://alt-foodrecipes.inspirythemes.com/recipe/buttermilk-biscuits/">
+                                <img width="222" height="144"
+                                     src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Buttermilk-Biscuits-222x144.jpg"
+                                     class="attachment-recipe-4column-thumb wp-post-image" alt="Buttermilk-Biscuits"/>
+                            </a>
+
+                            <p class="info-box">Buttermilk Biscuits</p>
+                        </li>
+                    </ul>
+                </div>
+                <span class="prev p-317"></span>
+                <span class="next n-317"></span>
+            </div>
+            <!-- end of recipe-imgs div -->
+        </div>
+        <!-- end of more-recipe div -->
+
+        <!-- Including Nutritional Info part -->
+        <div class="nutritional" itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
+            <h3>Nutritional Info</h3>
+
+            <p>This information is per serving.</p>
+            <ul>
+                <li class="nutrition">
+                    <p class="type">Protein</p>
+                    <span class="value">6.60g</span>
+                </li>
+                <li class="nutrition">
+                    <p class="type">Fat</p>
+                    <span class="value">500mg</span>
+                </li>
+                <li class="nutrition">
+                    <p class="type">Sodium</p>
+                    <span class="value">900mg</span>
+                </li>
+                <li class="nutrition">
+                    <p class="type">Fibre</p>
+                    <span class="value">20g</span>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+    <!-- end of info-right div -->
+
+
+    <span class="w-pet-border"></span>
+
+
+    </div>
+    <!-- end of left-area -->
+    <!-- LEFT AREA ENDS HERE -->
+    <div id="sidebar">
+    {% comment %}
+<div class="widget fav-recipes nostylewt">
+    <h2 class="w-bot-border"><span>MISC</span> Recipes</h2>
+
+    <div class="tabed">
+        <ul class="tabs clearfix">
+            <li class="current">Recent<span></span></li>
+            <li>Popular<span></span></li>
+            <li>Random<span></span></li>
+        </ul>
+        <div class="block current">
+            <ul class="highest">
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Homemade-English-Muffins-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Homemade-English-Muffins"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/">Homemade
+                        English Muffins</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.3 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Ham-and-Cheese-Breakfast-Sandwich-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Ham-and-Cheese-Breakfast-Sandwich"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/">Ham
+                        &#038; Cheese Breakfast Sandwich</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.1 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/pecan-honey-sticky-buns/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Pecan-Honey-Sticky-Buns-1-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Pecan-Honey-Sticky-Buns-1"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/pecan-honey-sticky-buns/">Pecan
+                        Honey Sticky Buns</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.1 / 5)
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of block div -->
+        <div class="block">
+            <ul class="highest">
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/goat-cheese-and-chorizo-rools/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Goat-Cheese-Chorizo-Rolls2-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Goat-Cheese-Chorizo-Rolls2"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/goat-cheese-and-chorizo-rools/">Goat
+                        Cheese and Chorizo Rolls</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.4 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/pimento-cheese-potato-skins/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Pimento-Cheese-Potato-Skins-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Pimento-Cheese-Potato-Skins"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/pimento-cheese-potato-skins/">Pimento
+                        Cheese Potato Skins</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.3 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/grilled-chicken-sandwich-with-pesto-goat-cheese-spread/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Grilled-Chicken-Sandwich-with-Pesto-Goat-Cheese-Spread1-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Grilled-Chicken-Sandwich-with-Pesto-Goat-Cheese-Spread1"/></a>
+                    <h5>
+                        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/grilled-chicken-sandwich-with-pesto-goat-cheese-spread/">Grilled
+                            Chicken Sandwich with Cheese</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.4 / 5)
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of block div -->
+        <div class="block">
+            <ul class="highest">
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/thai-chicken-pizza/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Thai-Chicken-Pizza-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image" alt="Thai-Chicken-Pizza"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/thai-chicken-pizza/">Thai Chicken
+                        Pizza</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/jalapeno-poppers/" class="img-box"><img
+                            width="63" height="53"
+                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Jalapeño-Poppers-63x53.jpg"
+                            class="attachment-sidebar-tabs wp-post-image" alt="Jalapeño-Poppers"/></a>
+                    <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/jalapeno-poppers/">Jalapeno
+                        Poppers</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.3 / 5)
+                    </p>
+                </li>
+                <li>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/roasted-chicken-with-a-mustard-crust/"
+                       class="img-box"><img width="63" height="53"
+                                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Roasted-Chicken-with-a-Mustard-Crust-63x53.jpg"
+                                            class="attachment-sidebar-tabs wp-post-image"
+                                            alt="Roasted-Chicken-with-a-Mustard-Crust"/></a>
+                    <h5>
+                        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/roasted-chicken-with-a-mustard-crust/">Roasted
+                            Chicken with a Mustard Crust</a></h5>
+
+                    <p class="rate">
+                        <span class="on"></span><span class="on"></span><span class="on"></span><span
+                            class="on"></span><span class="off"></span> (4.5 / 5)
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of block div -->
+        <div class="bot-border"></div>
+    </div>
+    <!-- end of tabed div -->
+</div>
+<!-- end of fav-recipes widget -->
+<div class="widget nostylewt">
+    <div class="recipes-slider-widget cs">
+        <h2 class="w-bot-border"><span>Cuisines</span> Slider</h2>
+        <ul class="cycle-slideshow" data-cycle-fx=scrollHorz data-cycle-timeout=0 data-cycle-slides="li"
+            data-cycle-next=".nrecent_posts_with_thumb-3" data-cycle-prev=".precent_posts_with_thumb-3">
+            <li>
+                <a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/">
+                    <img width="302" height="196"
+                         src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Ham-and-Cheese-Breakfast-Sandwich-302x196.jpg"
+                         class="attachment-recipe-slider-widget wp-post-image"
+                         alt="Ham-and-Cheese-Breakfast-Sandwich"/> </a>
+
+                <p class="info-box">Ham &#038; Cheese Breakfast Sandwich</p>
+            </li>
+            <li>
+                <a href="http://alt-foodrecipes.inspirythemes.com/recipe/buttermilk-biscuits/">
+                    <img width="302" height="196"
+                         src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Buttermilk-Biscuits-302x196.jpg"
+                         class="attachment-recipe-slider-widget wp-post-image" alt="Buttermilk-Biscuits"/> </a>
+
+                <p class="info-box">Buttermilk Biscuits</p>
+            </li>
+            <li>
+                <a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/">
+                    <img width="302" height="196"
+                         src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/banh-mi-302x196.jpg"
+                         class="attachment-recipe-slider-widget wp-post-image" alt="banh-mi"/> </a>
+
+                <p class="info-box">Banh Mi Sandwich</p>
+            </li>
+        </ul>
+        <span class="prev precent_posts_with_thumb-3"></span>
+        <span class="next nrecent_posts_with_thumb-3"></span>
+    </div>
+</div>
+<div class="widget nostylewt"><h2 class="w-bot-border"><span>Recent</span> Recipes</h2>
+    <ul class="recent-posts nostylewt">
+        <li class="clearfix">
+            <a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/" class="img-box"><img
+                    width="63" height="53"
+                    src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Homemade-English-Muffins-63x53.jpg"
+                    class="attachment-most-rated-thumb wp-post-image" alt="Homemade-English-Muffins"/></a>
+            <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/#">Homemade
+                English Muffins</a></h5>
+
+            <p>Nooks and crannies. These three words became my mantra...</p>
+        </li>
+        <li class="clearfix">
+            <a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/"
+               class="img-box"><img width="63" height="53"
+                                    src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Ham-and-Cheese-Breakfast-Sandwich-63x53.jpg"
+                                    class="attachment-most-rated-thumb wp-post-image"
+                                    alt="Ham-and-Cheese-Breakfast-Sandwich"/></a>
+            <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/#">Ham &#038;
+                Cheese Breakfast Sandwich</a></h5>
+
+            <p>Warm 2 tablespoons of the butter in large, nonstick skillet...</p>
+        </li>
+    </ul>
+</div>
+<div class="widget wk-special clearfix nostylewt"><h2 class="w-bot-border"><span>Weekly</span> Special</h2>
+
+    <div class="img-box for-all">
+        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/"><img width="122" height="132"
+                                                                                         src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/banh-mi-122x132.jpg"
+                                                                                         class="attachment-weekly-special-thumb wp-post-image"
+                                                                                         alt="banh-mi"/></a>
+    </div>
+    <div class="for-res">
+        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/"><img width="251" height="132"
+                                                                                         src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/banh-mi-251x132.jpg"
+                                                                                         class="attachment-weekly-for-res wp-post-image"
+                                                                                         alt="banh-mi"/></a>
+    </div>
+    <h4><a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/">Banh Mi Sandwich</a></h4>
+
+    <p>If you haven’t tried Vietnamese banh mi by now, you’ve been missing out on a truly remarkable sandwich. At
+        once exotic,...<a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/"> more</a></p>
+    <a href="http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/" class="readmore">Read More</a>
+</div>
+<!-- end of weekly spcial widget -->
+<div class="widget newsEvent nostylewt">
+    <h2 class="w-bot-border"><span>News</span> and Events</h2>
+    <ul class="list">
+        <li>
+            <h5><a href="http://alt-foodrecipes.inspirythemes.com/yndium-ploit-porta-odio-et-rhoncus/">Diet &#038;
+                Nutrition Healthy Eating</a></h5>
+
+            <p>Dignissim velit in hac dignissim in tristique vut. Odio, pulvinar lectus odio?...<a
+                    href="http://alt-foodrecipes.inspirythemes.com/yndium-ploit-porta-odio-et-rhoncus/">more</a></p>
+        </li>
+        <li>
+            <h5><a href="http://alt-foodrecipes.inspirythemes.com/enim-dignissim-a-pellentesque-aliquetlas/">10 Tips
+                To Healthy Eating</a></h5>
+
+            <p>Eat a variety of nutrient-rich foods. You need more than 40 different nutrients...<a
+                    href="http://alt-foodrecipes.inspirythemes.com/enim-dignissim-a-pellentesque-aliquetlas/">more</a>
+            </p>
+        </li>
+        <li>
+            <h5>
+                <a href="http://alt-foodrecipes.inspirythemes.com/phasellus-in-dolor-nec-nisi-adipiscing-parturient-proin-in/">Fresh
+                    Food on TV: Weekend Edition</a></h5>
+
+            <p>Dignissim velit in hac dignissim in tristique vut. Odio, pulvinar lectus odio?...<a
+                    href="http://alt-foodrecipes.inspirythemes.com/phasellus-in-dolor-nec-nisi-adipiscing-parturient-proin-in/">more</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<!-- end of fav-recipes widget -->                        </div>
+</div>
+<!-- end of content div -->
+<div class="bot-ads-area">
+</div>
+
+{% endcomment %}
+
+    <!-- CONTENT ENDS HERE -->
+
+    </div>
+    <!-- end of container div -->
+    </div>
+    <div class="w-pet-border"></div>
+    <!-- ============= CONTAINER AREA ENDS HERE ============== -->
+
+
+    <!-- ============= BOTTOM AREA STARTS HERE ============== -->
+    <div id="bottom-wrap">
+        <ul id="bottom" class="clearfix">
+            <li>
+                <div class="about">
+                    <a href="http://alt-foodrecipes.inspirythemes.com"><img
+                            src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/12/footer-logo.png"
+                            alt="Food Recipes Theme" class="footer-logo"/></a>
+
+                    <p>For every fine wine, there’s the perfect pairing of olives and cheese. Discover oodles of great
+                        tips
+                        and pairings in our idea center. For every fine wine, there’s the For every fine
+                        wine..........</p>
+                    <a href="http://alt-foodrecipes.inspirythemes.com/about-us/" class="readmore">Read more About Us</a>
+                </div>
+
+            </li>
+            <li>
+                <h2 class="w-bot-border"><span>Recent</span> Recipes</h2>
+                <ul class="recent-posts nostylewt">
+                    <li class="clearfix">
+                        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/"
+                           class="img-box"><img
+                                width="63" height="53"
+                                src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Homemade-English-Muffins-63x53.jpg"
+                                class="attachment-most-rated-thumb wp-post-image" alt="Homemade-English-Muffins"/></a>
+                        <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/homemade-english-muffins/#">Homemade
+                            English Muffins</a></h5>
+
+                        <p>Nooks and crannies. These three words became my mantra...</p>
+                    </li>
+                    <li class="clearfix">
+                        <a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/"
+                           class="img-box"><img width="63" height="53"
+                                                src="http://alt-foodrecipes.inspirythemes.com/wp-content/uploads/2012/03/Ham-and-Cheese-Breakfast-Sandwich-63x53.jpg"
+                                                class="attachment-most-rated-thumb wp-post-image"
+                                                alt="Ham-and-Cheese-Breakfast-Sandwich"/></a>
+                        <h5><a href="http://alt-foodrecipes.inspirythemes.com/recipe/ham-cheese-breakfast-sandwich/#">Ham
+                            &#038; Cheese Breakfast Sandwich</a></h5>
+
+                        <p>Warm 2 tablespoons of the butter in large, nonstick skillet...</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2 class="w-bot-border"><span>Twitter</span> Feed</h2>
+
+                <div id="twitter_update_list" class="widget nostylewt">
+                    <ul>
+                        <li class="twitter-item">Check out this great <a href="http://twitter.com/#search?q=themeforest"
+                                                                         class="twitter-link">#themeforest</a> item
+                            'Political Press - HTML Template' <a href="http://t.co/gU1vpXPyAd" class="twitter-link">http://t.co/gU1vpXPyAd</a><br><span
+                                    class="twitter-timestamp">5th Dec 2013</span></li>
+                        <li class="twitter-item">Check out our latest theme 'Political Press' <a
+                                href="http://t.co/uQzbZvuLB0" class="twitter-link">http://t.co/uQzbZvuLB0</a><br><span
+                                class="twitter-timestamp">3rd Oct 2013</span></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- end of bottom div -->
+    </div>
+    <!-- end of bottom-wrap div -->
+    <!-- ============= BOTTOM AREA ENDS HERE ============== -->
+
+
+    </div>
+ </div>
+{% endblock %}

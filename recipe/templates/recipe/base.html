@@ -1,0 +1,143 @@
+{% load staticfiles %}
+
+
+<!doctype html>
+<html lang="fr-FR">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block title %} {% endblock %}
+    <!-- Font Files -->
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"/>
+    <link rel='stylesheet' id='responsive-css' href="{% static 'css/responsive.css' %}" type='text/css' media='all'/>
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+    <link rel="alternate" type="application/rss+xml" title="Food Recipes Theme &raquo; Feed"
+          href="http://alt-foodrecipes.inspirythemes.com/feed/"/>
+
+    <script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery-migrate.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery-ui-1.9.2.custom.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/script.js' %}"></script>
+
+    <!-- Trucs SEO à gérer plus tard....
+    <link rel='prev' title='Chocolate Earl Grey Pots de Creme Recipe' href='http://alt-foodrecipes.inspirythemes.com/recipe/chocolate-earl-grey-pots-de-creme-recipe/' />
+    <link rel='next' title='Warm Flank Steak Salad With Mint And Cilantro' href='http://alt-foodrecipes.inspirythemes.com/recipe/warm-flank-steak-salad-with-mint-and-cilantro/' />
+    <link rel='canonical' href='http://alt-foodrecipes.inspirythemes.com/recipe/banh-mi-sandwich/' />
+    <link rel='shortlink' href='http://alt-foodrecipes.inspirythemes.com/?p=317' />
+    -->
+
+</head>
+<!--[if lt IE 7 ]>
+<body class="single single-recipe postid-317 ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<body class="single single-recipe postid-317 ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<body class="single single-recipe postid-317 ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<body class="single single-recipe postid-317 ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body class="single single-recipe postid-317"> <!--<![endif]-->
+
+<body>
+
+<!-- ============= HEADER STARTS HERE ============== -->
+<div id="header-wrapper" class="clearfix">
+
+    <div id="header" class="clearfix">
+        <!-- WEBSITE LOGO -->
+        <a class="responsive_logo" href="http://www.menugourmet.com"><img
+                src="{% static 'images/menugourmet-recettes-faciles.gif' %}" alt="Menugourmet - Recettes faciles"
+                class="logo"/></a>
+        <img class="header-img"
+             src="http://alt-foodrecipes.inspirythemes.com/wp-content/themes/food-recipes-demo-1.4.1/images/header-image.png"
+             height="117" width="463" alt="Food Recipes Theme"/>
+
+    </div>
+    <!-- end of header div -->
+
+    {% comment %} Bordure à gérer, je n'ai pas l'immage
+    <span class="w-pet-border"></span>
+    {% endcomment %}
+
+
+</div><!-- end of header-wrapper div -->
+
+<!-- ============= HEADER ENDS HERE ============== -->
+
+
+{% block content %}{% endblock %}
+
+<!-- ============= FOOTER STARTS HERE ============== -->
+
+<div id="footer-wrap">
+    <div id="footer">
+        <p class="copyright">Copyright ©2014, Menugourmet.com </p>
+
+        <p class="dnd"></p>
+    </div>
+    <!-- end of footer div -->
+</div>
+<!-- end of footer-wrapper div -->
+
+
+<!-- ============= FOOTER STARTS HERE ============== -->
+
+<script type='text/javascript'
+        src='http://alt-foodrecipes.inspirythemes.com/wp-content/themes/food-recipes-demo-1.4.1/js/script.js?ver=1.0'></script>
+<script type='text/javascript'
+        src='http://alt-foodrecipes.inspirythemes.com/wp-includes/js/comment-reply.min.js?ver=3.9.2'></script>
+<script type="text/javascript">
+    (function () {
+        window.PinIt = window.PinIt || { loaded:false };
+        if (window.PinIt.loaded) return;
+        window.PinIt.loaded = true;
+        function async_load() {
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "http://assets.pinterest.com/js/pinit.js";
+            var x = document.getElementsByTagName("script")[0];
+            x.parentNode.insertBefore(s, x);
+        }
+
+        if (window.attachEvent)
+            window.attachEvent("onload", async_load);
+        else
+            window.addEventListener("load", async_load, false);
+    })();
+</script>
+<script type="text/javascript">
+
+    //=============================
+
+    //this function attached focus and blur events with input elements
+    var addFocusAndBlur = function ($input, $val) {
+
+        $input.focus(function () {
+            if (this.value == $val) {
+                this.value = '';
+            }
+        });
+
+        $input.blur(function () {
+            if (this.value == '') {
+                this.value = $val;
+            }
+        });
+    }
+    // example code to attach the events
+    addFocusAndBlur(jQuery('#s'), 'Search for');
+    addFocusAndBlur(jQuery('#cname'), 'Name here');
+    addFocusAndBlur(jQuery('#cemail'), 'Email here');
+    addFocusAndBlur(jQuery('#cmessage'), 'Message');
+    addFocusAndBlur(jQuery('#message'), 'Type your comments here');
+</script>
+
+</body>
+</html>

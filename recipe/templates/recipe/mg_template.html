@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../../static/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../static/css/recipes.css" type="text/css" />
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <div xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Recipe">
+
+    <div id="recipe-title" class="without-recipe-author">
+        <h1>
+          <span rel="v:Review">
+            <span typeof="v:Review-aggregate">
+               <span rel="v:rating">
+                  <span typeof="v:Rating">
+                  <span property="v:average" content="5"><?php echo mg_icons($recipe['note'], 'big-star', 'img') ?></span>
+                  <span property="v:count" content="5"/></span>
+                  </span>
+               </span>
+            </span>
+            </span>
+            <span  property="v:name">{{ recipe.name }}</span>
+            <?php bl($recipe) ?>
+        </h1>
+    </div>
+
+    <a class="anchor" name="send-recipe"></a>
+
+    <div id="recipe-presentation">
+        <div id="recipe-picture">
+            <?php if ($is_from_feed == 1): ?>
+            <?php echo link_to(mg_object_image_tag($recipe, 'big', array('rel' => "v:photo")),$recipe->getAddedByWebsite(), array('title' => __('feed_image_title', null, 'recipes'), 'popup'=>true, )) ; ?>
+            <?php else :?>
+            <?php echo mg_object_image_tag($recipe, 'big', array('rel' => "v:photo")); ?>
+            <?php endif;?>
+        </div>
+
+        <?php /* ?>
+        <div id="recipe-sticky-note">
+            <form method="POST" id="add_postit_form" onsubmit="return false;" action="<?php echo url_for('@recipe_add_post_it?id='.$recipe->getId()) ?>" >
+                <?php echo $user_postit_form['note']->render(array(
+                'class' => 'sticky-note',
+                )) ?>
+            </form>
+        </div>
+        <?php */ ?>
+
+        <div id="recipe-info">
+            <div id="recipe-extra-info">
+                <ul id="recipe-icons">
+                    <?php if (!$sf_request->getAttribute('print')): ?>
+                    <li class="<?php echo $recipe->getIsLight() ? 'on' : 'off' ?>" id="is-light-icon" title="<?php echo __('tooltip_recipe_is_light', null, 'recipes') ?>">&nbsp;</li>
+                    <li class="<?php echo $recipe->getIsVegetarian() ? 'on' : 'off' ?>" id="is-veggie-icon" title="<?php echo __('tooltip_recipe_is_veggie', null, 'recipes') ?>">&nbsp;</li>
+                    <li class="<?php echo $recipe->getTaste() == 'spicy' ? 'on' : 'off' ?>" id="is-spicy-icon" title="<?php echo __('tooltip_recipe_is_spicy', null, 'recipes') ?>">&nbsp;</li>
+                    <li class="<?php echo $recipe->getIsSelection() ? 'on' : 'off' ?>" id="is-selection-icon" title="<?php echo __('tooltip_recipe_is_selection', null, 'recipes') ?>">&nbsp;</li>
+                    <?php /* <li class="<?php echo $recipe->getChef() ? 'on' : 'off' ?>" id="is-chef-icon" title="<?php echo __('tooltip_recipe_is_chef', null, 'recipes') ?>">&nbsp;</li> */?>
+                    <?php else: ?>
+                    <li id="is-light-icon" title="<?php echo __('tooltip_recipe_is_light', null, 'recipes') ?>">
+                        <?php if ($recipe->getIsLight()): ?>
+                        <img src="/images/icons/light_on.gif" alt="<?php echo __('tooltip_recipe_is_light', null, 'recipes') ?>" />
+                        <?php else: ?>
+                        <img src="/images/icons/light_off.gif" alt="<?php echo __('tooltip_recipe_is_light', null, 'recipes') ?>" />
+                        <?php endif; ?>
+                    </li>
+                    <li id="is-veggie-icon" title="<?php echo __('tooltip_recipe_is_veggie', null, 'recipes') ?>">
+                        <?php if ($recipe->getIsVegetarian()): ?>
+                        <img src="/images/icons/veggie_on.gif" alt="<?php echo __('tooltip_recipe_is_veggie', null, 'recipes') ?>" />
+                        <?php else: ?>
+                        <img src="/images/icons/veggie_off.gif" alt="<?php echo __('tooltip_recipe_is_veggie', null, 'recipes') ?>" />
+                        <?php endif; ?>
+                    </li>
+                    <li id="is-spicy-icon" title="<?php echo __('tooltip_recipe_is_spicy', null, 'recipes') ?>">
+                        <?php if ($recipe->getTaste() == 'spicy'): ?>
+                        <img src="/images/icons/spicy_on.gif" alt="<?php echo __('tooltip_recipe_is_spicy', null, 'recipes') ?>" />
+                        <?php else: ?>
+                        <img src="/images/icons/spicy_off.gif" alt="<?php echo __('tooltip_recipe_is_spicy', null, 'recipes') ?>" />
+                        <?php endif; ?>
+                    </li>
+                    <li id="is-selection-icon" title="<?php echo __('tooltip_recipe_is_selection', null, 'recipes') ?>">
+                        <?php if ($recipe->getIsSelection()): ?>
+                        <img src="/images/icons/selection_on.png" alt="<?php echo __('tooltip_recipe_is_selection', null, 'recipes') ?>" />
+                        <?php else: ?>
+                        <img src="/images/icons/selection_off.png" alt="<?php echo __('tooltip_recipe_is_selection', null, 'recipes') ?>" />
+                        <?php endif; ?>
+                    </li>
+                    <?php  /*
+                <li id="is-chef-icon" title="<?php echo __('tooltip_recipe_is_chef', null, 'recipes') ?>">
+                    <?php if ($recipe->getChef()): ?>
+                    <img src="/images/icons/chef_on.png" alt="<?php echo __('tooltip_recipe_is_chef', null, 'recipes') ?>" />
+                    <?php else: ?>
+                    <img src="/images/icons/chef_off.png" alt="<?php echo __('tooltip_recipe_is_chef', null, 'recipes') ?>" />
+                    <?php endif; ?>
+                    </li>
+                    */?>
+                    <?php endif; ?>
+                </ul>
+
+                <?php if (count($recipe->getCourses()) > 0): ?>
+                <?php $course_list = array() ?>
+                <?php foreach ($recipe->getCourses() as $course): ?>
+                <?php array_push($course_list, mg_link_to_facet($course->getName())) ?>
+                <?php endforeach; ?>
+                <div id="recipe-courses">
+                    <div class="info-label">
+                        <?php echo __('view_label_courses', null, 'recipes') ?>
+                    </div>
+                    <div class="info-value">
+                        <?php echo implode(' '.__('separator_or', null, 'recipes').' ', $course_list) ?>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <div id="recipe-practical-info">
+                <?php sw_include_partial('recipe_practical_info', array('recipe'=>$recipe)) ?>
+            </div>
+
+            <div id="recipe-interaction">
+                <?php sw_include_partial(
+              'recipe_interaction',
+              array(
+                'add_note_form'   => $add_note_form,
+                'recipe_comments' => $recipe_comments,
+                'recipe'          => $recipe,
+                'update_user_recipe_form'     => $update_user_recipe_form,
+                'send_recipe_to_friends_form' => $send_recipe_to_friends_form,
+                'serving'         => $serving,
+                )
+                ) ?>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="mg-tabs recipe-tabs">
+
+        <ul class="auto-tabs-nav">
+            <li class="ui-tabs-nav-item">
+                <a href="#recipe">
+                    <span class="mg-tabs-nav-item-left">&nbsp;</span>
+                    <span><?php echo __('tab_recipe', null, 'recipes') ?></span>
+                    <span class="mg-tabs-nav-item-right">&nbsp;</span>
+                </a>
+            </li>
+            <li class="ui-tabs-nav-item">
+                <a href="#comments">
+                    <span class="mg-tabs-nav-item-left">&nbsp;</span>
+                    <span><?php echo __('tab_comments', array('_comments_' => '<span class="parenthesis">('.$recipe_comments->count().')</span>'), 'recipes') ?></span>
+                    <span class="mg-tabs-nav-item-right">&nbsp;</span>
+                </a>
+            </li>
+        </ul>
+
+        <div id="recipe" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+            <a class="anchor" name="description"></a>
+
+            <?php if ($recipe->getDescription() != ''): ?>
+            <div id="recipe-description">
+                <div class="open-big-quote" property="v:summary">&nbsp;</div>
+                <?php echo nl2br(add_link_keywords($recipe->getDescription())) ?>
+
+                <?php /* if($recipe->getAuthor()->exists()): ?>
+                <?php echo __('recipe_from', array(
+                  '_name_' => link_to($recipe->getAuthor(), $recipe->getAuthor()->getUrl('view')))
+                , 'recipes') ?>
+                <?php endif; */ ?>
+
+                <div class="close-big-quote">&nbsp;</div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($is_from_feed == 1): ?>
+            <?php echo link_to(__('feed_recipe_see_more', null, 'recipes'), $recipe->getAddedByWebsite(), array('title' => $recipe_name, 'class'=>'view-more', 'popup'=>true)) ?>
+            <?php endif; ?>
+
+            <?php include_component('recipes', 'keywords', array('recipe' => $recipe)) ?>
+
+            <?php if (count($recipe->getRecipeIngredients()) > 0): ?>
+            <div id="recipe-ingredients">
+                <div id="recipe-ingredients-title">
+                    <h2>
+                        <?php /* <a class="anchor" name="ingredients"><?php echo __('h3_recipe_ingredients', null, 'recipes')?></a> */ ?>
+                        <?php echo __('h3_recipe_ingredients', null, 'recipes')?>
+                        <?php /* <div><strong><?php echo($recipe_name) ?></strong></div>*/?>
+                </h2>
+                <div id="recalculate-serving">
+                    <?php if($serving): ?>
+                    <form id="recipe-form-calculate-serving" onsubmit="return false;" action="<?php echo url_for(@recipe_update_ingredients) ?>" method="POST">
+                        <span id="recipe-ingredients-loader" class="small-loading-indicator">&nbsp;</span>
+                        <span><?php echo __('message_base_recipe_for', null, 'recipes') ?></span>
+                        <input name="id" value="<?php echo $recipe->id ?>" type="hidden"/>
+                        <?php if($recipe->isServing() && !$sf_request->getAttribute('print')): ?>
+                        <input size="2" type="text" name="serving" value="<?php echo $serving ?>"  property="v:yield" content="<?php echo $serving ?>"/>
+                        <?php else: ?>
+                        <span property="v:yield"><?php echo $serving ?></span>
+                        <?php endif; ?>
+                        <span><?php echo __('message_nb_people', null, 'recipes') ?></span>
+                        <?php /* ?>
+                        <select id="change-serving-system" name="serving-system">
+                            <option value="us-system" id="us-system"><?php echo __('message_us_system', null, 'recipes') ?></option>
+                            <option value="metric-system" id="metric-system"><?php echo __('message_metric_system', null, 'recipes') ?></option>
+                        </select>
+                        <?php */ ?>
+                        <?php if($recipe->isServing()): ?>
+                        <a id="submit-serving-system" onclick="return false;" ><?php echo __('btn_calculate_serving', null, 'recipes') ?></a>
+                        <?php endif; ?>
+                    </form>
+                    <?php endif; ?>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="recipe-ingredients-serving">
+                <?php sw_include_partial('recipe_serving_ingredients', array(
+                  'recipe' => $recipe,
+                'serving' => $serving
+                )) ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <?php elseif ($recipe->getUgcIngredients()): ?>
+        <?php $ugc_ingredients = $recipe->getSplittedUgcIngredients() ?>
+
+        <div id="recipe-ingredients">
+            <div id="recipe-ingredients-title">
+                <h2>
+                    <?php /* <a class="anchor" name="ingredients"><?php echo __('h3_recipe_ingredients', null, 'recipes')?></a> */ ?>
+                    <?php echo __('h3_recipe_ingredients', null, 'recipes')?>
+                    <?php /* <div><strong><?php echo($recipe_name) ?></strong></div> */?>
+            </h2>
+            <div class="clear"></div>
+            <div id="recalculate-serving">
+                <span><?php echo __('label_ugc_serving', array('#serving#' => $serving), 'recipes') ?></span>
+            </div>
+        </div>
+
+        <ul class="first-col">
+            <?php // on affiche toujours les ingrédients sur deux listes, dont la taille varie
+                  $nb_item_by_list = ceil(count($ugc_ingredients) / 2); ?>
+            <?php foreach($ugc_ingredients as $key => $recipe_ingredient): ?>
+            <?php if ($key == $nb_item_by_list): ?>
+        </ul>
+        <ul class="second-col">
+            <?php endif; ?>
+            <li>
+                <?php echo $recipe_ingredient ?>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <div class="clear"></div>
+    </div>
+    <?php endif; ?>
+
+    <?php if (count($recipe->getRecipeSteps()) > 0): ?>
+    <ul id="recipe-steps" property="v:instructions">
+        <li id="recipe-steps-title">
+            <h2>
+                <?php /* <a class="anchor" name="steps"><?php echo __('h3_recipe_steps', null, 'recipes')?></a> */ ?>
+                <?php echo __('h3_recipe_steps', null, 'recipes')?>
+                <?php /* <div><strong><?php echo($recipe_name) ?></strong></div> */ ?>
+    </h2>
+    </li>
+    <?php foreach($recipe->getRecipeSteps() as $key=>$recipe_step): ?>
+    <?php $alternate_step_bg = $key%2 == 0 ? 'alternate-step-bg' : ''?>
+    <?php sw_include_partial('recipes/recipe_step', array(
+                  'recipe_step' => $recipe_step,
+    'alternate_step_bg' => $alternate_step_bg,
+    'has_only_one_step' => count($recipe->getRecipeSteps()) == 1 ? true : false
+    )) ?>
+    <?php endforeach; ?>
+    <?php if (count($recipe->getRecipeSteps()) > 1): ?>
+    <li id="recipe-ready">
+        <?php echo __('h3_recipe_ready', null, 'recipes')?>
+    </li>
+    <?php endif;?>
+    </ul>
+    <?php endif; ?>
+    </div>
+
+    <div id="comments">
+
+        <a class="anchor" name="comments"></a>
+        <?php foreach($recipe_comments->getResults() as $key=>$recipe_comment): ?>
+        <?php $first_comment_class = $key > 0 ? '' : ' first-comment'; ?>
+        <div class="recipe-comment<?php echo $first_comment_class ?>">
+            <?php sw_include_partial('recipes/recipe_comment', array(
+                'recipe' => $recipe,
+            'recipe_comment' => $recipe_comment
+            )) ?>
+        </div>
+        <?php endforeach; ?>
+
+        <?php echo mg_pager_navigation($recipe_comments, url_for($recipe->getUrl('view')), $recipe_comments->getQueryParameters()) ?>
+
+        <a class="anchor" name="comments"></a>
+        <form id="form-add-comment" action="<?php echo url_for($recipe->getUrl('add_comment')) ?>#comments" method="POST" >
+            <div class="add-new-comment">
+                <?php echo $user_comment_form->renderGlobalErrors() ?>
+
+                <?php if ($sf_user->isAuthenticated()): ?>
+                <?php $connected_user = $sf_user->getGuardUser() ?>
+
+                <?php echo $user_comment_form['added_by_name']->render(array('type' => 'hidden', 'value' => $connected_user->getPublicName())) ?>
+                <?php echo $user_comment_form['added_by_email']->render(array('type' => 'hidden', 'value' => $connected_user->getEmail())) ?>
+                <?php echo $user_comment_form['added_by_website']->render(array('type' => 'hidden', 'value' => $connected_user->getWebsite())) ?>
+                <?php else: ?>
+                <?php if ($user_comment_form['added_by_name']->hasError()): ?>
+                <div class="form-errors-top">
+                    <?php echo $user_comment_form['added_by_name']->renderError() ?>
+                </div>
+                <?php endif; ?>
+                <div class="recipe-comment-info">
+                    <?php echo $user_comment_form['added_by_name']->renderLabel() ?>
+                </div>
+                <div class="recipe-comment-text">
+                    <?php echo $user_comment_form['added_by_name'] ?>
+                </div>
+                <div class="clear"></div>
+
+                <br />
+
+                <?php if ($user_comment_form['added_by_email']->hasError()): ?>
+                <div class="form-errors-top">
+                    <?php echo $user_comment_form['added_by_email']->renderError() ?>
+                </div>
+                <?php endif; ?>
+                <div class="recipe-comment-info">
+                    <?php echo $user_comment_form['added_by_email']->renderLabel() ?>
+                </div>
+                <div class="recipe-comment-text">
+                    <?php echo $user_comment_form['added_by_email'] ?>
+                </div>
+                <div class="clear"></div>
+
+                <br />
+
+                <?php if ($user_comment_form['added_by_website']->hasError()): ?>
+                <div class="form-errors-top">
+                    <?php echo $user_comment_form['added_by_website']->renderError() ?>
+                </div>
+                <?php endif; ?>
+                <div class="recipe-comment-info">
+                    <?php echo $user_comment_form['added_by_website']->renderLabel() ?>
+                </div>
+                <div class="recipe-comment-text">
+                    <?php echo $user_comment_form['added_by_website'] ?>
+                </div>
+
+                <div class="clear"></div>
+                <?php endif; ?>
+                <br />
+
+                <?php if ($user_comment_form['message']->hasError()): ?>
+                <div class="form-errors-top">
+                    <?php echo $user_comment_form['message']->renderError() ?>
+                </div>
+                <?php endif; ?>
+                <div class="recipe-comment-info">
+                    <h3><?php echo $user_comment_form['message']->renderLabel(__('label_reply', null, 'recipes')) ?></h3>
+                </div>
+                <div class="recipe-comment-text">
+                    <?php echo $user_comment_form['message']->render(array('rows'=>9)) ?>
+                </div>
+                <div class="clear"></div>
+
+                <?php if(isset($user_comment_form['captcha'])): ?>
+                <?php if ($user_comment_form['captcha']->hasError()): ?>
+                <div class="form-errors-top">
+                    <?php echo $user_comment_form['captcha']->renderError() ?>
+                </div>
+                <?php endif; ?>
+
+                <div class="recipe-comment-info">
+                    <?php echo $user_comment_form['captcha']->renderLabel() ?>
+                </div>
+                <div class="recipe-comment-text">
+                    <?php echo $user_comment_form['captcha']->render(array('rows'=>9)) ?>
+                </div>
+                <div class="clear"></div>
+                <?php endif ?>
+
+                <div class="recipe-comment-info">&nbsp;</div>
+                <div class="recipe-comment-text">
+                    <?php echo mg_button(__('btn_send_your_comment', null, 'recipes'), array('type'=>'submit', 'class'=>'btn', 'id'=>'btn-submit-comment')) ?>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </form>
+    </div>
+    </div>
+    </div>
+
+    <?php  if ($similar_recipes->count() > 0): ?>
+    <br />
+    <div class="recipe-component-block">
+        <?php include_component('cms', 'callComponent',
+                  array(
+                    'name'   => 'listRecipes',
+        'layout' => 'd',
+        'zone_pos' => 2,
+        'title' => __('similar_recipes_component_title', null, 'recipes'),
+        /* 'header' => __('similar_recipes_component_header', array('_recipe_name_' => $recipe_name), 'recipes'),*/
+        /*'footer' => __('link_see_all_recipes', null, 'recipes'),*/
+        'settings' => array(
+        'tabs' => array(
+        'tab1' => array(
+        'limit' => 6,
+        'image_format' => 'big',
+        'datagrid' => $similar_recipes,
+        )
+        )
+        )
+        )
+        ) ?>
+        <div class="related-recipes-link">
+            <?php  echo link_to(__('link_see_all_recipes', null, 'recipes'), url_for($recipe->getUrl('related_recipes')));?>
+        </div>
+    </div>
+    <?php endif;  ?>
+
+
+    <?php slot('contextual') ?>
+
+    <?php if (!$recipe->getChef()): ?>
+    <?php sw_include_partial('author', array('recipe' => $recipe)) ?>
+    <?php endif;?>
+
+    <?php  include_component('cms', 'renderWidget', array(
+        'settings' => array('widget' => 'adSense1')
+    )) ?>
+
+
+    <div style="margin-bottom:20px">
+        <?php  include_partial('global/facebook_like_box') ?>
+    </div>
+
+    <?php /* include_component('cms', 'renderWidget', array(
+        'settings' => array('widget' => 'photoGrid')
+    )) */?>
+
+    <div class="widget-wrapper">
+        <?php /* include_component('cms', 'renderWidget', array(
+          'settings' => array(
+        'widget' => 'gourmetMap',
+        'preferences' => array(
+        'center_lat' => '##SW_CACHE_LATITUDE##',
+        'center_lng' => '##SW_CACHE_LONGITUDE##',
+        'search' => $recipe->getRelatedKeywords(true)
+        )
+        )
+        )) */ ?>
+    </div>
+
+    <?php /* include_component('cms', 'renderWidget', array(
+        'settings' => array('widget' => 'recipesTop10')
+    )) */ ?>
+
+    <!-- Bloc thématique adsens -->
+    <div class="widget-wrapper">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-5585467316352098";
+        /* Bloc thématique à droite */
+        google_ad_slot = "3301860311";
+        google_ad_width = 200;
+        google_ad_height = 90;
+        //-->
+        </script>
+        <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+
+    <?php end_slot() ?>
+
+
+</body>
+</html>
+
