@@ -38,7 +38,8 @@ class Recipe(models.Model):
         return self.name
 
     def get_image_url(self):
-        return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_slug
+        if self.image_slug and self.image_name:
+            return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_slug
 
     def get_ingredients(self):
         #import pdb;pdb.set_trace()
