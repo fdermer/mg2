@@ -93,3 +93,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+##from local_settings import ENABLE_DEBUG_TOOLBAR
+#ENABLE_DEBUG_TOOLBAR = True
+#if ENABLE_DEBUG_TOOLBAR:
+#    MIDDLEWARE_CLASSES += (
+#        "debug_toolbar.middleware.DebugToolbarMiddleware",
+#        )
+#
+#    INSTALLED_APPS += (
+#        "debug_toolbar",
+#        )
+#
+#    DEBUG_TOOLBAR_CONFIG = {
+#        "INTERCEPT_REDIRECTS": False
+#    }
