@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-import hashlib, string, re
+import hashlib, string, re, os
 
 class Recipe(models.Model):
     id = models.IntegerField(default=None, null=False, blank=False, primary_key=True)
@@ -39,7 +39,20 @@ class Recipe(models.Model):
 
     def get_image_url(self):
         if self.image_slug and self.image_name:
-            return "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_slug
+            url = "recettes/"+hashlib.md5(self.image_name.encode('utf-8')).hexdigest()[:1]+"/"+self.image_slug
+
+            # TODO: gérer proprement les recettes sans photos. Avec le chemin en dur, ça ne risque pas de marcher.
+            # Mettre un chemin dans les local settings ?
+            # Ou alors, MAJ la base pour ajouter un champ: "j'ai la photo ou pas". cf ./manage.py count_recipes_with_photos
+
+            root_dir = "/Users/Fred/www/mg2/mg2/recipe/static/"
+
+            if os.path.exists(os.path.join(root_dir, url)):
+                return url
+            else:
+                return "images/recette_default.jpg"
+        else:
+            return "images/recette_default.jpg"
 
     def get_ingredients(self):
         #import pdb;pdb.set_trace()
@@ -51,6 +64,8 @@ class Recipe(models.Model):
             ingredient_list = string.replace(self.ingredients, sep,";")
             ingredient_list = re.sub(";(;)*",";",ingredient_list) #Delete multiple ";"
             ingredient_list = ingredient_list.split(";")
+            #Todo Gérer le cas d'une chaine qui commence par un séparateur <=> élément vide, ex recettes 25861
+            #Todo Idem dans le cas Ingrédient UGC
             return ingredient_list
         else:
             sep = "•".decode('utf-8')

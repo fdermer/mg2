@@ -20,6 +20,7 @@
             <span class="published">2014-08-17</span>
 
             <!-- Recipe Categorization Information -->
+            {% comment %}
             <ul class="recipe-cat-info clearfix">
                 <li>
                     Catégorie: <a href="" rel="tag">{{ recipe.category }}</a>
@@ -28,14 +29,13 @@
                     Difficulté: <a href="" rel="tag">{{ recipe.get_difficulty }}</a>
                 </li>
             </ul>
+            {% endcomment %}
 
             <!-- Recipe Single Image -->
-            <div class="single-img-box ">
-                <div class="single-slider cycle-slideshow " data-cycle-pager=".cycle-pager">
+            <div class="single-img-box">
                     <img width="300" height="300"
                          src="{% static recipe.get_image_url %}"
-                         class="photo wp-post-image" alt="{{ recipe.name }}" itemprop="image"/></div>
-                <div class="img-nav cycle-pager"></div>
+                         class="photo wp-post-image" alt="{{ recipe.name }}" itemprop="image"/>
             </div>
 
             {% include "recipe/details/_informations.html" %}

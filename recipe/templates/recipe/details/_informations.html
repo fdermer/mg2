@@ -1,5 +1,11 @@
 <!-- Recipe Information -->
 <ul class="recipe-info clearfix">
+
+    <li>
+        <strong class="name">Difficulté:</strong> <a href="" rel="tag">{{ recipe.get_difficulty }}</a>
+    </li>
+
+
     <li class="servings">
         <strong class="name">Pour :</strong>
         <span class="value"><meta itemprop="recipeYield">{{ recipe.serving }} personne(s)</span>
@@ -7,24 +13,28 @@
     <li class="prep-time">
         <strong class="name">Préparation :</strong>
             <span class="value">
-                <meta itemprop="prepTime" content="PT{{ recipe.prep_time }}M">{{ recipe.prep_time }}m
+                <meta itemprop="prepTime" content="PT{{ recipe.prep_time }}M">{{ recipe.prep_time }} minutes
             </span>
     </li>
     <li class="cook-time">
         <strong class="name">Cuisson :</strong>
             <span class="value">
-                <meta itemprop="cookTime" content="PT{{ recipe.cooking_time }}M">{{ recipe.cooking_time }}m
+                <meta itemprop="cookTime" content="PT{{ recipe.cooking_time }}M">{{ recipe.cooking_time }} minutes
             </span>
     </li>
     <li class="yield">
         <strong class="name">Temps de pause :</strong>
-        <span class="value">{{ recipe.pause_time }}m</span>
+        <span class="value">{{ recipe.pause_time }} minutes</span>
     </li>
     <li class="ready-in">
         <strong class="name">Total :</strong>
             <span class="value">
-                <meta itemprop="totalTime" content="PT{{ recipe.total_time }}M">{{ recipe.total_time }}m
+                <meta itemprop="totalTime" content="PT{{ recipe.total_time }}M">{{ recipe.total_time }} minutes
             </span>
+    </li>
+
+    <li>
+        <strong class="name">Catégorie:</strong> <a href="" rel="tag">{{ recipe.category }}</a>
     </li>
 </ul>
 <span class="w-pet-border"></span>
