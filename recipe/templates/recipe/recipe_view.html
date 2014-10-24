@@ -1,0 +1,53 @@
+{% extends 'recipe/__base.html' %}
+{% load staticfiles %}
+{# load recipe_filters #}
+
+{% block title %}
+    <title>{{ recipe.name }} | Meilleure recette </title>
+{% endblock %}
+
+{% block content %}
+    {% include "recipe/details/_top_nav.html" %}
+
+    <!-- ============= CONTENT AREA STARTS HERE ============== -->
+    <div id="content" class="clearfix ">
+        <div id="left-area" class="clearfix hrecipe" itemscope itemtype="http://schema.org/Recipe">
+
+            <h1 class="title fn" itemprop="name">{{ recipe.name }}</h1>
+            <!-- for Schema.org microdata -->
+            <meta itemprop="url" content="http://{{ request.get_host }}{{ request.path }}">
+            <meta itemprop="datePublished" content="2014-08-17"/>
+            <span class="published">2014-08-17</span>
+
+            <!-- Recipe Categorization Information -->
+            <ul class="recipe-cat-info clearfix">
+                <li>
+                    Catégorie: <a href="" rel="tag">{{ recipe.category }}</a>
+                </li>
+                <li>
+                    Difficulté: <a href="" rel="tag">{{ recipe.get_difficulty }}</a>
+                </li>
+            </ul>
+
+            <!-- Recipe Single Image -->
+            <div class="single-img-box ">
+                <div class="single-slider cycle-slideshow " data-cycle-pager=".cycle-pager">
+                    <img width="300" height="300"
+                         src="{% static recipe.get_image_url %}"
+                         class="photo wp-post-image" alt="{{ recipe.name }}" itemprop="image"/></div>
+                <div class="img-nav cycle-pager"></div>
+            </div>
+
+            {% include "recipe/details/_informations.html" %}
+
+            {% include "recipe/details/_left_instructions.html" %}
+
+            {% include "recipe/details/_right_instructions.html" %}
+
+        </div>
+        <div id="sidebar"></div>
+
+    </div>
+    <div class="w-pet-border"></div>
+
+{% endblock %}
