@@ -1,16 +1,41 @@
 {% extends 'recipe/__base.html' %}
 {% load staticfiles %}
-{# load recipe_filters #}
+{% load pagination_tags %}
+{% autopaginate recipe_list %}
+
 
 {% block title %}
     <title> Nos Meilleures recettes </title>
 {% endblock %}
 
 {% block content %}
+    {% if recipe_list %}
+        <div class="recipe-list">
+            <ul>
+                {% for recipe in recipe_list %}
+                    <li>
 
-    {% for recipe in recipe_list %}
-        <a href="{% url 'RecipeDetail' recipe.id %}">{{ recipe.name }}</a>
-        <br>
-    {% endfor %}
+                        <div class="img-box">
+                            <a href="{% url 'RecipeDetail' recipe.id %}">
+                                <img width="300" height="300"
+                                     src="{% static recipe.get_image_url %}"
+                                     class="photo wp-post-image" alt="{{ recipe.name }}" itemprop="image"/>
+                            </a>
+                        </div>
+
+                        <div class="recipe-overview">
+                            <a href="{% url 'RecipeDetail' recipe.id %}">
+                                <h1>{{ recipe.name }}</h1>
+                            </a>
+                        </div>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+
+    {% paginate %}
 
 {% endblock %}

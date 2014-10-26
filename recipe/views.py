@@ -13,10 +13,11 @@ class RecipeList(generic.ListView):
     model = Recipe
     template_name = 'recipe/recipe_list.html'
     context_object_name = 'recipe_list'
+    paginate_by = 10
 
     def get_queryset(self):
         """Return the last five published recipes."""
-        return Recipe.objects.order_by('id')[:10]
+        return Recipe.objects.order_by('id')[:555]
 
 class RecipeDetail(generic.DetailView):
     model = Recipe
