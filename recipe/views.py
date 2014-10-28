@@ -7,18 +7,6 @@ from django.views import generic
 from models import Recipe
 
 
-# Create your views here.
-
-class RecipeList(generic.ListView):
-    model = Recipe
-    template_name = 'recipe/recipe_list.html'
-    context_object_name = 'recipe_list'
-    paginate_by = 10
-
-    def get_queryset(self):
-        """Return the last five published recipes."""
-        return Recipe.objects.order_by('id')[:555]
-
 class RecipeDetail(generic.DetailView):
     model = Recipe
     template_name = 'recipe/recipe_view.html'
@@ -32,3 +20,23 @@ class RecipeDetail(generic.DetailView):
 
         return context
 
+class RecipeList(generic.ListView):
+    model = Recipe
+    template_name = 'recipe/recipe_list.html'
+    context_object_name = 'recipe_list'
+    paginate_by = 10
+
+    def get_queryset(self):
+        """Return the last five published recipes."""
+        return Recipe.objects.order_by('id')[:555]
+
+class RecipeFilteredList(generic.ListView):
+    model = Recipe
+    template_name = 'recipe/recipe_list.html'
+    context_object_name = 'recipe_list'
+    paginate_by = 10
+
+
+    def get_queryset(self):
+        #self.difficulty = get_object_or_404(Recipe, difficulty=self.args[0])
+        return Recipe.objects.filter(difficulty=self.args[0])[:55]

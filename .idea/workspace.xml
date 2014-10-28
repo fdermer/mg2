@@ -32,37 +32,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recipe_view.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="20" selection-start="1059" selection-end="1059" vertical-scroll-proportion="-5.7083335">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recipe_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/recipe_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="28" selection-start="1014" selection-end="1014" vertical-scroll-proportion="-13.833333">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recipe/static/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1136" column="66" selection-start="79167" selection-end="79167" vertical-scroll-proportion="-19.692308">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recipe/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="39" selection-start="398" selection-end="398" vertical-scroll-proportion="0.23961662">
+            <state line="14" column="38" selection-start="417" selection-end="417" vertical-scroll-proportion="0.20926517">
+              <folding>
+                <element signature="e#25#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/recipe/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="14" selection-start="937" selection-end="947" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#25#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/recipe/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="0" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -84,7 +79,6 @@
         <option value="$PROJECT_DIR$/mg2/urls.py" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/wp-template.html" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/details/_left_instructions.html" />
-        <option value="$PROJECT_DIR$/recipe/urls.py" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/__base.html" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/recipe_view.html" />
         <option value="$PROJECT_DIR$/recipe/models.py" />
@@ -93,6 +87,7 @@
         <option value="$PROJECT_DIR$/slugify_photos.py" />
         <option value="$PROJECT_DIR$/recipe/templates/recipe/recipe_list.html" />
         <option value="$PROJECT_DIR$/recipe/static/css/style.css" />
+        <option value="$PROJECT_DIR$/recipe/urls.py" />
         <option value="$PROJECT_DIR$/recipe/views.py" />
       </list>
     </option>
@@ -157,46 +152,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="recipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mg2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mg2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="recipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mg2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mg2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="recipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -521,13 +476,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/__base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="26" selection-start="3163" selection-end="3163" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/recipe/templates/recipe/details/_footer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="31" selection-start="191" selection-end="191" vertical-scroll-proportion="2.7" />
@@ -565,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recipe/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="75" selection-start="328" selection-end="340" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/65c9c35b/047e51c5-5dc8-4caa-9b9d-eb58c3e0df65/..RECIPE_RECIPE">
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
@@ -580,13 +521,6 @@
     <entry file="file://$PROJECT_DIR$/copy_photos.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recipe/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="28" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -612,10 +546,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/recipe/views_non_gen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="46" selection-start="481" selection-end="481" vertical-scroll-proportion="0.3115016">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recipe/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recipe/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="14" selection-start="937" selection-end="947" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#25#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recipe/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="39" selection-start="398" selection-end="398" vertical-scroll-proportion="0.23961662">
-          <folding />
+        <state line="14" column="38" selection-start="417" selection-end="417" vertical-scroll-proportion="0.20926517">
+          <folding>
+            <element signature="e#25#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
